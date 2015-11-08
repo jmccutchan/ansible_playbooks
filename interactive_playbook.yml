@@ -1,0 +1,17 @@
+--- #prompt for package installation
+- hosts: (host i.p.) 
+  user: ansible
+  sudo: yes
+  connection: ssh 
+  gather_facts: no
+  vars:
+    playbook_version: 0.1b
+  vars_prompt:
+    - name: pkg
+      prompt: Install which Package?
+      default: nginx
+      private: no
+  tasks:
+    - name: Install the entered package
+      apt: pkg={{ pkg }} state=latest
+
